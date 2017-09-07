@@ -1,0 +1,30 @@
+@import "../../../scss/variables";
+.section-title {
+    text-align: center;
+    padding-top: 20px;
+    margin-bottom: 60px;
+}
+
+.section-title h1 {
+    font-family: 'Droid Serif', serif;
+    font-size: 30px;
+    margin-bottom: 4px;
+}
+
+.section-title h2 {
+    margin-top: 0;
+    margin-bottom: 4px;
+    font-family: 'Droid Serif', serif;
+    font-size: 15px;
+    letter-spacing: 0.045vw;
+}
+
+.section-title a {
+    color: $rh-font-color;
+    text-decoration: none;
+}
+
+.section-title img {
+    padding-top: 4px;
+    border-top: 1px solid #fff;
+}
