@@ -13,6 +13,7 @@ import { TitleComponent } from './component/title/title.component';
 import { ImprintComponent } from './component/imprint/imprint.component';
 import { IntroComponent } from './component/intro/intro.component';
 import { GenreFilterComponent } from './component/genre-filter/genre-filter.component';
+import { MixListComponent } from './component/mix-list/mix-list.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { GenreFilterComponent } from './component/genre-filter/genre-filter.comp
     TitleComponent,
     ImprintComponent,
     IntroComponent,
-    GenreFilterComponent
+    GenreFilterComponent,
+    MixListComponent
   ],
   imports: [
     BrowserModule,

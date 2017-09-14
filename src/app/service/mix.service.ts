@@ -16,12 +16,15 @@ export class MixService implements OnInit {
   }
 
   // Ermittelt die Mixes über die API
-  getMixes() : Observable<Mix[]> {
+  getMixes(): Observable<Mix[]> {
     return this.http.get('http://api.radio-herrenzimmer.de/mixes')
       .map((res: Response) => {
         return res['Mixes'].map(function (resultMix) {
           let mix: Mix = new Mix();
           mix.id = resultMix.MixId;
+          mix.title = resultMix.Title;
+          
+          console.info(resultMix);
 
           return mix;
         });
