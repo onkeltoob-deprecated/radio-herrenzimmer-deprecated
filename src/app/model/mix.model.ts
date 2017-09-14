@@ -1,4 +1,5 @@
 import { Genre } from './genre.model';
+import { Track } from './track.model';
 
 // Repräsentiert ein Mix-Objekt
 export class Mix {
@@ -23,8 +24,8 @@ export class Mix {
     // URL des Tracks beim Hoster (zum Beispiel Soundcloud)
     trackUrl: string;
 
-    // Liste der verwendeten Tracks im JSON-Format
-    tracklistJson: string;
+    // Liste der verwendeten Tracks
+    tracklist: Track[];
 
     // Identifier des Tracks zur Verwendung in URLs
     urlTitle: string;

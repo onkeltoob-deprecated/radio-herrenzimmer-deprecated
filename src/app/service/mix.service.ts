@@ -6,6 +6,7 @@ import 'rxjs/add/operator/map';
 import { Observable } from "rxjs/Observable";
 import { Genre } from '../model/genre.model';
 import { Mix } from '../model/mix.model';
+import { Track } from '../model/track.model';
 
 // Service zum Auslesen von Mix-Daten
 @Injectable()
@@ -23,7 +24,10 @@ export class MixService implements OnInit {
           let mix: Mix = new Mix();
           mix.id = resultMix.MixId;
           mix.title = resultMix.Title;
-          
+          mix.tracklist = JSON.parse(resultMix.TracklistJson);
+          mix.genre = new Genre(resultMix.Genre);
+          mix.durationSeconds = resultMix.DurationSeconds;
+
           console.info(resultMix);
 
           return mix;
