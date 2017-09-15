@@ -31,5 +31,5 @@ export class Mix {
     urlTitle: string;
 
     // Zeitpunkt des Uploads beim Hoster (zum Beispiel Soundcloud)
-    uploaded: number;
+    uploaded: Date;
 }

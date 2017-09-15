@@ -27,6 +27,11 @@ export class MixService implements OnInit {
           mix.tracklist = JSON.parse(resultMix.TracklistJson);
           mix.genre = new Genre(resultMix.Genre);
           mix.durationSeconds = resultMix.DurationSeconds;
+          mix.descriptionHtml = resultMix.DescriptionHtml;
+          mix.trackId = resultMix.TrackId;
+          mix.trackUrl = resultMix.TrackUrl;
+          mix.urlTitle = resultMix.UrlTitle;
+          mix.uploaded = resultMix.Uploaded;
 
           console.info(resultMix);
 
