@@ -1,5 +1,4 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import * as moment from 'moment';
 
 import { MixListComponent } from './mix-list.component';
 

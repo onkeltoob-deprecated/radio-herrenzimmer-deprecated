@@ -31,9 +31,7 @@ export class MixService implements OnInit {
           mix.trackId = resultMix.TrackId;
           mix.trackUrl = resultMix.TrackUrl;
           mix.urlTitle = resultMix.UrlTitle;
-          mix.uploaded = resultMix.Uploaded;
-
-          console.info(resultMix);
+          mix.uploaded = new Date(resultMix.Uploaded * 1000);
 
           return mix;
         });

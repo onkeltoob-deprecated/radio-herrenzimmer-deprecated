@@ -16,8 +16,6 @@ export class MixListComponent implements OnInit {
     // Mixes über den entsprechenden Service ermitteln
     mixService.getMixes().subscribe(data => {
       this.mixes = data;
-
-      console.info(this.mixes);
     });
   }
 
