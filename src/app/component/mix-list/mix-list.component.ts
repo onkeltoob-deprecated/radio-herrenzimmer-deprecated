@@ -15,7 +15,7 @@ export class MixListComponent implements OnInit {
   constructor(mixService: MixService) {
     // Mixes über den entsprechenden Service ermitteln
     mixService.getMixes().subscribe(data => {
-      this.mixes = data;
+      this.mixes = data.reverse();
     });
   }
 
