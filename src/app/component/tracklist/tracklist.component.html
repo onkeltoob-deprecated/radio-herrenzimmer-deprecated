@@ -1,0 +1,9 @@
+<div class="tracklist">
+    <table class="table table-striped">
+        <tr *ngFor="let track of tracks">
+            <td>{{track.number}}</td>
+            <td class="track-title">{{track.title}} <br /> <span class="artist">by {{track.artist}}</span></td>
+            <td>{{track.label}}</td>
+        </tr>
+    </table>
+</div>

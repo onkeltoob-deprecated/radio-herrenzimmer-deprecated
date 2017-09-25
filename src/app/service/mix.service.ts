@@ -24,7 +24,6 @@ export class MixService implements OnInit {
           let mix: Mix = new Mix();
           mix.id = resultMix.MixId;
           mix.title = resultMix.Title;
-          mix.tracklist = JSON.parse(resultMix.TracklistJson);
           mix.genre = new Genre(resultMix.Genre);
           mix.durationSeconds = resultMix.DurationSeconds;
           mix.descriptionHtml = resultMix.DescriptionHtml;
@@ -32,6 +31,12 @@ export class MixService implements OnInit {
           mix.trackUrl = resultMix.TrackUrl;
           mix.urlTitle = resultMix.UrlTitle;
           mix.uploaded = new Date(resultMix.Uploaded * 1000);
+
+          mix.tracks = JSON
+          .parse(resultMix.TracklistJson)
+          .map(
+            track => new Track(track['Number'], track['Title'], track['Artist'], track['Label'])
+          );
 
           return mix;
         });

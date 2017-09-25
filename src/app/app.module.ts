@@ -16,6 +16,7 @@ import { IntroComponent } from './component/intro/intro.component';
 import { GenreFilterComponent } from './component/genre-filter/genre-filter.component';
 import { MixListComponent } from './component/mix-list/mix-list.component';
 import { MixComponent } from './component/mix/mix.component';
+import { TracklistComponent } from './component/tracklist/tracklist.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { MixComponent } from './component/mix/mix.component';
     IntroComponent,
     GenreFilterComponent,
     MixListComponent,
-    MixComponent
+    MixComponent,
+    TracklistComponent
   ],
   imports: [
     BrowserModule,

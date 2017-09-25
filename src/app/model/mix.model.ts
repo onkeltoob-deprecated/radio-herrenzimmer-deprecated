@@ -25,7 +25,7 @@ export class Mix {
     trackUrl: string;
 
     // Liste der verwendeten Tracks
-    tracklist: Track[];
+    tracks: Track[];
 
     // Identifier des Tracks zur Verwendung in URLs
     urlTitle: string;
