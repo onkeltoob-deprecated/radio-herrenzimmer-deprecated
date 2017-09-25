@@ -2,7 +2,26 @@
     <h1 itemprop="name">{{mix.title}}</h1>
     <meta content="Onkel Toob" itemprop="byArtist">
     <meta content="http://radio-herrenzimmer.de/{{mix.urlTitle}}" itemprop="url">
-    <meta content="{{getIso8601Duration()}}" itemprop="duration">
+    <meta content="{{dateTimeService.getIso8601Duration(mix.durationSeconds)}}" itemprop="duration">
     <meta content="Radio Herrenzimmer" itemprop="inAlbum">
     <p [innerHtml]="getIntroduction()"></p>
+
+    <div class="info">
+        <div class="col-md-9">
+            <input type="button" value="▶" class="btn start" />
+            <span class="duration">Length: {{dateTimeService.getDurationFromSeconds(mix.durationSeconds)}}</span>
+            <span class="play-count">{{PlayCount}} <i class="fa fa-play-circle"></i></span>
+            <span class="star-count">{{StarCount}} <i class="fa fa-star"></i></span>
+            <span class="download-count">{{DownloadCount}} <i class="fa fa-cloud-download"></i></span>
+        </div>
+        <div class="col-md-3 host">
+            <p id="host">hosted on
+                <a href="{{mix.trackUrl}}" target="_blank"><img src="/assets/img/soundcloud-white.png" alt="SOUNDCLOUD"></a>
+            </p>
+        </div>
+    </div>
+
+    <div class="tracklist">
+
+    </div>
 </div>

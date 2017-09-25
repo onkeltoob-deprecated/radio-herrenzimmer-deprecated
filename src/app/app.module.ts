@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { GenreService } from './service/genre.service';
 import { MixService } from './service/mix.service';
 import { PlatformService } from './service/platform.service';
+import { DateTimeService } from './service/date-time.service';
 import { PlatformsComponent } from './component/platforms/platforms.component';
 import { TitleService } from './service/title.service';
 import { TitleComponent } from './component/title/title.component';
@@ -36,7 +37,8 @@ import { MixComponent } from './component/mix/mix.component';
     GenreService,
     PlatformService,
     TitleService,
-    MixService
+    MixService,
+    DateTimeService
   ],
   bootstrap: [AppComponent]
 })

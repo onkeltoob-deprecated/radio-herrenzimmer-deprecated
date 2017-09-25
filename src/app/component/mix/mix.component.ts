@@ -1,5 +1,6 @@
 import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
 import { Mix } from '../../model/mix.model';
+import { DateTimeService } from '../../service/date-time.service';
 import * as moment from 'moment';
 
 @Component({
@@ -13,7 +14,8 @@ export class MixComponent implements OnInit {
   @Input() mix: Mix;
 
   // Erstellt ein neues Objekt vom Typ MixComponent
-  constructor() { }
+  constructor(public dateTimeService: DateTimeService) { 
+  }
 
   // Wird beim Initialisieren der Komponente ausgeführt
   ngOnInit() {
@@ -27,14 +29,5 @@ export class MixComponent implements OnInit {
   // Gibt den aktuellen Status der Detailinformationen zurück
   getMixDate() {
     return moment(this.mix.uploaded).format('MMMM Do, YYYY');;
-  }
-
-  // Ermittelt die Dauer des Mixes im ISO-Format
-  getIso8601Duration() {
-    var hours = Math.floor(this.mix.durationSeconds / 3600);
-    var minutes = Math.floor((this.mix.durationSeconds - (hours * 3600)) / 60);
-    var seconds = this.mix.durationSeconds - (hours * 3600) - (minutes * 60);
-
-    return 'PT' + hours.toString() + 'H' + minutes.toString() + 'M' + seconds.toString() + 'S';
   }
 }
