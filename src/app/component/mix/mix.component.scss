@@ -11,7 +11,7 @@
     }
     .info {
         background-color: #161616;
-        padding: 6px;
+        padding: 6px 12px 6px 24px;
         input[type=button] {
             background-color: #161616;
             font-size: 20px;
@@ -30,6 +30,9 @@
             margin-top: 6px;
             p {
                 margin-bottom: 0;
+            }
+            img {
+                vertical-align: sub;
             }
         }
     }

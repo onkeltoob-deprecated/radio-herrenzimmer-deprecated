@@ -7,18 +7,21 @@
     <p [innerHtml]="getIntroduction()"></p>
 
     <div class="info">
-        <div class="col-md-9">
-            <input type="button" value="▶" class="btn start" />
-            <span class="duration">Length: {{dateTimeService.getDurationFromSeconds(mix.durationSeconds)}}</span>
-            <span class="play-count">{{PlayCount}} <i class="fa fa-play-circle"></i></span>
-            <span class="star-count">{{StarCount}} <i class="fa fa-star"></i></span>
-            <span class="download-count">{{DownloadCount}} <i class="fa fa-cloud-download"></i></span>
+        <div class="row">
+            <div class="col-md-9">
+                <input type="button" value="▶" class="btn start" />
+                <span class="duration">Length: {{dateTimeService.getDurationFromSeconds(mix.durationSeconds)}}</span>
+                <span class="play-count">{{PlayCount}} <i class="fa fa-play-circle"></i></span>
+                <span class="star-count">{{StarCount}} <i class="fa fa-star"></i></span>
+                <span class="download-count">{{DownloadCount}} <i class="fa fa-cloud-download"></i></span>
+            </div>
+            <div class="col-md-3 host">
+                <p id="host">hosted on
+                    <a href="{{mix.trackUrl}}" target="_blank"><img src="/assets/img/soundcloud-white.png" alt="SOUNDCLOUD"></a>
+                </p>
+            </div>
         </div>
-        <div class="col-md-3 host">
-            <p id="host">hosted on
-                <a href="{{mix.trackUrl}}" target="_blank"><img src="/assets/img/soundcloud-white.png" alt="SOUNDCLOUD"></a>
-            </p>
-        </div>
+
     </div>
 
     <app-tracklist [tracks]="mix.tracks"></app-tracklist>
