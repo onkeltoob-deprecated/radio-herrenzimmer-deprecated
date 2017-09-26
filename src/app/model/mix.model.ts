@@ -32,4 +32,19 @@ export class Mix {
 
     // Zeitpunkt des Uploads beim Hoster (zum Beispiel Soundcloud)
     uploaded: Date;
+
+    // Anzahl der Downloads
+    downloads: number;
+
+    // Anzahl der Reposts
+    reposts: number;
+
+    // Anzahl der Likes
+    favorites: number;
+
+    // Anzahl der Kommentare
+    comments: number;
+
+    // Anzahl der Abspielvorgänge
+    playbacks: number;
 }

@@ -11,9 +11,11 @@
             <div class="col-md-9">
                 <input type="button" value="▶" class="btn start" />
                 <span class="duration">Length: {{dateTimeService.getDurationFromSeconds(mix.durationSeconds)}}</span>
-                <span class="play-count">{{PlayCount}} <i class="fa fa-play-circle"></i></span>
-                <span class="star-count">{{StarCount}} <i class="fa fa-star"></i></span>
-                <span class="download-count">{{DownloadCount}} <i class="fa fa-cloud-download"></i></span>
+                <span class="playback-count" title="{{mix.playbacks}} playbacks">{{mix.playbacks}} <i class="fa fa-play-circle"></i></span>
+                <span class="favorite-count" title="{{mix.favorites}} likes">{{mix.favorites}} <i class="fa fa-heart"></i></span>
+                <span class="download-count" title="{{mix.downloads}} downloads">{{mix.downloads}} <i class="fa fa-cloud-download"></i></span>
+                <span class="repost-count" title="{{mix.reposts}} reposts">{{mix.reposts}} <i class="fa fa-retweet"></i></span>
+                <span class="comment-count" title="{{mix.comments}} comments">{{mix.comments}} <i class="fa fa-comment"></i></span>
             </div>
             <div class="col-md-3 host">
                 <p id="host">hosted on

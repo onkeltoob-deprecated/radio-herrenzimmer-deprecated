@@ -31,12 +31,19 @@ export class MixService implements OnInit {
           mix.trackUrl = resultMix.TrackUrl;
           mix.urlTitle = resultMix.UrlTitle;
           mix.uploaded = new Date(resultMix.Uploaded * 1000);
+          mix.playbacks = resultMix.PlaybackCount;
+          mix.downloads = resultMix.DownloadCount;
+          mix.comments = resultMix.CommentCount;
+          mix.favorites = resultMix.FavoritingsCount;
+          mix.reposts = resultMix.RepostCount;
 
           mix.tracks = JSON
           .parse(resultMix.TracklistJson)
           .map(
             track => new Track(track['Number'], track['Title'], track['Artist'], track['Label'])
           );
+
+console.info(mix);
 
           return mix;
         });
