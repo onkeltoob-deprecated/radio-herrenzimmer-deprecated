@@ -53,12 +53,14 @@ section {
 * Links
 ********************************/
 
+a,
 a:link,
 a:visited,
-a.hover,
-a.active {
+a:hover,
+a:active {
     color: $rh-link-color;
     text-decoration: none;
+    cursor: pointer;
 }
 
 h1 a,

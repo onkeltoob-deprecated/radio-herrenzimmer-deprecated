@@ -43,8 +43,6 @@ export class MixService implements OnInit {
             track => new Track(track['Number'], track['Title'], track['Artist'], track['Label'])
           );
 
-console.info(mix);
-
           return mix;
         });
       });

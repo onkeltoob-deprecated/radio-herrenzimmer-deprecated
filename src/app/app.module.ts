@@ -2,7 +2,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
+import { RouterModule, Routes } from '@angular/router';
+
 import { AppComponent } from './app.component';
+import { AppRoutingModule } from './app-routing.module';
 
 import { GenreService } from './service/genre.service';
 import { MixService } from './service/mix.service';
@@ -17,6 +20,9 @@ import { GenreFilterComponent } from './component/genre-filter/genre-filter.comp
 import { MixListComponent } from './component/mix-list/mix-list.component';
 import { MixComponent } from './component/mix/mix.component';
 import { TracklistComponent } from './component/tracklist/tracklist.component';
+import { RouterExampleComponent } from './component/router-example/router-example.component';
+import { NotFoundComponent } from './component/not-found/not-found.component';
+import { HomeComponent } from './component/home/home.component';
 
 @NgModule({
   declarations: [
@@ -28,12 +34,16 @@ import { TracklistComponent } from './component/tracklist/tracklist.component';
     GenreFilterComponent,
     MixListComponent,
     MixComponent,
-    TracklistComponent
+    TracklistComponent,
+    RouterExampleComponent,
+    NotFoundComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    HttpClientModule
+    HttpClientModule,
+    AppRoutingModule
   ],
   providers: [
     GenreService,

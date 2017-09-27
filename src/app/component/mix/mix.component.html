@@ -1,5 +1,5 @@
 <div class="mix" id="{{mix.urlTitle}}" itemprop="track" itemscope itemtype="http://schema.org/MusicRecording">
-    <h1 itemprop="name">{{mix.title}}</h1>
+    <h1 itemprop="name"><a routerLink="/{{mix.urlTitle}}">{{mix.title}}</a></h1>
     <meta content="Onkel Toob" itemprop="byArtist">
     <meta content="http://radio-herrenzimmer.de/{{mix.urlTitle}}" itemprop="url">
     <meta content="{{dateTimeService.getIso8601Duration(mix.durationSeconds)}}" itemprop="duration">
