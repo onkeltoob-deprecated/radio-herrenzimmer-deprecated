@@ -48,6 +48,39 @@ export class MixService implements OnInit {
       });
   }
 
+
+  // Ermittelt einen Mix anhand des URL-Titels über die API
+  getMix(urlTitle: string): Observable<Mix> {
+    return this.http.get('http://api.radio-herrenzimmer.de/mixes/' + urlTitle)
+      .map((res: Response) => {
+        return res['Mixes'].map(function (resultMix) {
+          let mix: Mix = new Mix();
+          mix.id = resultMix.MixId;
+          mix.title = resultMix.Title;
+          mix.genre = new Genre(resultMix.Genre);
+          mix.durationSeconds = resultMix.DurationSeconds;
+          mix.descriptionHtml = resultMix.DescriptionHtml;
+          mix.trackId = resultMix.TrackId;
+          mix.trackUrl = resultMix.TrackUrl;
+          mix.urlTitle = resultMix.UrlTitle;
+          mix.uploaded = new Date(resultMix.Uploaded * 1000);
+          mix.playbacks = resultMix.PlaybackCount;
+          mix.downloads = resultMix.DownloadCount;
+          mix.comments = resultMix.CommentCount;
+          mix.favorites = resultMix.FavoritingsCount;
+          mix.reposts = resultMix.RepostCount;
+
+          mix.tracks = JSON
+          .parse(resultMix.TracklistJson)
+          .map(
+            track => new Track(track['Number'], track['Title'], track['Artist'], track['Label'])
+          );
+
+          return mix;
+        });
+      });
+  }
+
   // Wird beim Initialisieren des Services ausgeführt
   ngOnInit(): void { }
 }
