@@ -7,6 +7,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
+import { MessageService } from './service/message.service';
 import { GenreService } from './service/genre.service';
 import { MixService } from './service/mix.service';
 import { PlatformService } from './service/platform.service';
@@ -20,9 +21,9 @@ import { GenreFilterComponent } from './component/genre-filter/genre-filter.comp
 import { MixListComponent } from './component/mix-list/mix-list.component';
 import { MixComponent } from './component/mix/mix.component';
 import { TracklistComponent } from './component/tracklist/tracklist.component';
-import { RouterExampleComponent } from './component/router-example/router-example.component';
 import { NotFoundComponent } from './component/not-found/not-found.component';
 import { HomeComponent } from './component/home/home.component';
+import { AudioPlayerComponent } from './component/audio-player/audio-player.component';
 
 @NgModule({
   declarations: [
@@ -35,9 +36,9 @@ import { HomeComponent } from './component/home/home.component';
     MixListComponent,
     MixComponent,
     TracklistComponent,
-    RouterExampleComponent,
     NotFoundComponent,
-    HomeComponent
+    HomeComponent,
+    AudioPlayerComponent
   ],
   imports: [
     BrowserModule,
@@ -46,6 +47,7 @@ import { HomeComponent } from './component/home/home.component';
     AppRoutingModule
   ],
   providers: [
+    MessageService,
     GenreService,
     PlatformService,
     TitleService,

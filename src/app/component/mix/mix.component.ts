@@ -1,6 +1,7 @@
-import { Component, Input, OnInit, OnDestroy, ViewEncapsulation } from '@angular/core';
+import { Component, Input, Output, OnInit, OnDestroy, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Mix } from '../../model/mix.model';
+import { MessageService } from '../../service/message.service';
 import { MixService } from '../../service/mix.service';
 import { DateTimeService } from '../../service/date-time.service';
 import * as moment from 'moment';
@@ -22,7 +23,11 @@ export class MixComponent implements OnInit, OnDestroy {
   private mixServiceSubscription: any;
 
   // Erstellt ein neues Objekt vom Typ MixComponent
-  constructor(private route: ActivatedRoute, private mixService: MixService, public dateTimeService: DateTimeService) { }
+  constructor(
+    private route: ActivatedRoute, 
+    private mixService: MixService, 
+    public dateTimeService: DateTimeService,
+    private messageService: MessageService<Mix>) { }
 
   // Wird beim Initialisieren der Komponente ausgeführt
   ngOnInit() {
@@ -57,5 +62,11 @@ export class MixComponent implements OnInit, OnDestroy {
   // Gibt den aktuellen Status der Detailinformationen zurück
   getMixDate() {
     return moment(this.mix.uploaded).format('MMMM Do, YYYY');;
+  }
+
+  // Schickt den Mix zum Abspielen an den Message-Dienst,
+  // auf den die Abspiel-Komponente lauscht
+  playMix(){
+    this.messageService.sendMessage(this.mix);
   }
 }
