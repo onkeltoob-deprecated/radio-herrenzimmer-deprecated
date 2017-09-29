@@ -4,6 +4,8 @@ import { HttpClient } from '@angular/common/http';
 import { Http, RequestOptions, Headers } from '@angular/http';
 import 'rxjs/add/operator/map';
 import { Observable } from "rxjs/Observable";
+import { ConfigurationService } from './configuration.service';
+import { Configuration } from '../model/configuration.model';
 import { Genre } from '../model/genre.model';
 import { Mix } from '../model/mix.model';
 import { Track } from '../model/track.model';
@@ -12,9 +14,11 @@ import { Track } from '../model/track.model';
 @Injectable()
 export class MixService implements OnInit {
 
+  // Konfigurationsobjekt
+  private configuration: Configuration;
+
   // Erstellt ein neues Objekt vom Typ MixService
-  constructor(private http: HttpClient) {
-  }
+  constructor(private configurationService: ConfigurationService, private http: HttpClient) {}
 
   // Ermittelt die Mixes über die API
   getMixes(): Observable<Mix[]> {
@@ -38,10 +42,10 @@ export class MixService implements OnInit {
           mix.reposts = resultMix.RepostCount;
 
           mix.tracks = JSON
-          .parse(resultMix.TracklistJson)
-          .map(
+            .parse(resultMix.TracklistJson)
+            .map(
             track => new Track(track['Number'], track['Title'], track['Artist'], track['Label'])
-          );
+            );
 
           return mix;
         });
@@ -71,10 +75,10 @@ export class MixService implements OnInit {
           mix.reposts = resultMix.RepostCount;
 
           mix.tracks = JSON
-          .parse(resultMix.TracklistJson)
-          .map(
+            .parse(resultMix.TracklistJson)
+            .map(
             track => new Track(track['Number'], track['Title'], track['Artist'], track['Label'])
-          );
+            );
 
           return mix;
         });
@@ -82,5 +86,7 @@ export class MixService implements OnInit {
   }
 
   // Wird beim Initialisieren des Services ausgeführt
-  ngOnInit(): void { }
+  ngOnInit(): void { 
+    this.configuration = this.configurationService.getConfiguration();
+  }
 }

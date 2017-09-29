@@ -19,6 +19,8 @@ export class MixListComponent implements OnInit, OnDestroy {
 
   // Wird beim Initialisieren der Komponente ausgeführt
   ngOnInit() {
+
+
     // Mixes über den entsprechenden Service ermitteln
     this.mixServiceSubscription = this.mixService.getMixes().subscribe(data => {
       this.mixes = data.reverse();

@@ -1,0 +1,4 @@
+{
+    "MixListEndpoint": "http://api.radio-herrenzimmer.de/mixes",
+    "MixEndpoint": "http://api.radio-herrenzimmer.de/mixes/{urlTitle}"
+}

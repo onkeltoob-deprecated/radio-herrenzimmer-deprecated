@@ -7,6 +7,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
+import { ConfigurationService } from './service/configuration.service';
 import { MessageService } from './service/message.service';
 import { GenreService } from './service/genre.service';
 import { MixService } from './service/mix.service';
@@ -47,6 +48,7 @@ import { AudioPlayerComponent } from './component/audio-player/audio-player.comp
     AppRoutingModule
   ],
   providers: [
+    ConfigurationService,
     MessageService,
     GenreService,
     PlatformService,
