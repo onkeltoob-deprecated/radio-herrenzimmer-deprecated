@@ -1,0 +1,25 @@
+.tracklist {
+    border: 1px solid #000;
+    border-top-style: none;
+    overflow-y: scroll;
+    table {
+        line-height: 1.4;
+        th,
+        td {
+            border-top-style: none;
+            padding: 8px;
+        }
+        td.track-title {
+            width: 50%;
+        }
+    }
+    td:first-child {
+        vertical-align: middle;
+        text-align: center;
+        max-width: 40px;
+    }
+    .artist {
+        font-size: smaller;
+        font-weight: normal;
+    }
+}

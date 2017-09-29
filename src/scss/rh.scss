@@ -44,6 +44,8 @@ section {
 .container h5,
 .container h6 {
     font-family: 'Droid Serif', serif;
+    margin-top: 20px;
+    margin-bottom: 10px;
 }
 
 
@@ -51,16 +53,46 @@ section {
 * Links
 ********************************/
 
+a,
 a:link,
 a:visited,
-a.hover,
-a.active {
+a:hover,
+a:active {
     color: $rh-link-color;
     text-decoration: none;
+    cursor: pointer;
 }
 
 h1 a,
 h1 a:hover {
     color: white;
     text-decoration: none;
+}
+
+
+/********************************
+* Tabellen
+********************************/
+
+.table {
+    background-color: #292929;
+    margin-bottom: 0;
+}
+
+.table-striped>tbody>tr:nth-child(odd)>td,
+.table-striped>tbody>tr:nth-child(odd)>th {
+    background-color: #242424;
+}
+
+
+/**************************************
+* Komponenten: Diese werden eigentlich 
+* in den komponentenspezifischen SCSS-
+* Dateien gestylt; ggf. müssen hier 
+* aber ein paar Angaben mit globalerem
+* Scope geschrieben werden
+**************************************/
+
+.mixes .mix .tracklist {
+    max-height: 300px;
 }

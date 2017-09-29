@@ -1,0 +1,7 @@
+<p *ngIf="mix">
+    router-example works: {{mix.urlTitle}} - dumdidum
+</p>
+
+<ng-container *ngFor="let mix of mixes">
+    <p>{{mix.urlTitle}}</p>
+</ng-container>

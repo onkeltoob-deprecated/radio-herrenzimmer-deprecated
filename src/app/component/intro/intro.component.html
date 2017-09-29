@@ -6,7 +6,7 @@
         <span class="genre">Drum &amp; Bass</span>.
     </p>
 
-    <p [@detailsLinkState]="currentDetailsState"><a href="#" (click)="toggleDetails()">Click to read more</a> or simply start listening now.</p>
+    <p [@detailsLinkState]="currentDetailsState"><a tabindex="0" (click)="toggleDetails()">Click to read more</a> or simply start listening now.</p>
 
     <div [@detailsState]="currentDetailsState">
         <p>
@@ -20,6 +20,6 @@
             section and subscribe by clicking on the Radio Herrenzimmer image. You can also copy and paste the following URL if you're using any other podcast software:
             <a href="http://feeds.soundcloud.com/users/soundcloud:users:29348258/sounds.rss" target="_blank">http://feeds.soundcloud.com/users/soundcloud:users:29348258/sounds.rss</a>.
         </p>
-        <p><a href="#" (click)="toggleDetails()">Click to hide this useless information</a> and start listening already.</p>
+        <p><a tabindex="0" (click)="toggleDetails()">Click to hide this useless information</a> and start listening already.</p>
     </div>
 </section>
