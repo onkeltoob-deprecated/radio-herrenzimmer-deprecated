@@ -1,23 +1,27 @@
-<div class="audio-player">
-    <p>asdasdasd asdas</p>
-    <div *ngIf="mix">{{mix.urlTitle}}</div>
-
-    <!-- <div class="col-md-10 audio-information">
-        <p>
-            <img ng-src="{{ArtWorkUrl}}" class="artwork" alt="Track cover" id="artwork" />
-            <span>{{Introduction}} {{TitleInformation}}</span>
-            <span class="host" id="host">
-                hosted on
-                <a href="{{TrackUrl}}" target="_blank"><img src="/img/soundcloud-white.png" alt="SOUNDCLOUD"></a>
-            </span>
-        </p>
+<div class="container-fluid audio-player">
+    <div class="row">
+        <div class="col-md-10 audio-information">
+            <ng-container *ngIf="!mix;else mix_information">
+                <p class="no-track-warning">No track is playing. Select a mix and click its play button to get things started.</p>
+            </ng-container>
+            <ng-template #mix_information>
+                <p>
+                    <!-- <img ng-src="{{ArtWorkUrl}}" class="artwork" alt="Track cover" id="artwork" /> -->
+                    <span class="title">You're listening to: {{mix.title}}</span>
+                    <span class="host">
+                    hosted on
+                    <a href="{{mix.trackUrl}}" target="_blank"><img src="/assets/img/soundcloud-white.png" alt="SOUNDCLOUD"></a>
+                </span>
+                </p>
+            </ng-template>
+        </div>
+        <div class="col-md-2 shuffle-mode" *ngIf="mix">
+            <!-- <p>Shuffle mixes:
+                <input type="checkbox" class="switch" id="shuffle" name="shuffle" checked>
+            </p> -->
+        </div>
+        <audio id="audio" controls preload="none" name="media">
+            <source type="audio/mpeg">
+        </audio>
     </div>
-    <div class="col-md-2 shuffle-mode" id="shuffle-container">
-        <p>Shuffle mixes:
-            <input type="checkbox" class="switch" id="shuffle" name="shuffle" checked>
-        </p>
-    </div>
-    <audio id="audio" controls preload="none" name="media">
-        <source type="audio/mpeg">
-    </audio> -->
 </div>

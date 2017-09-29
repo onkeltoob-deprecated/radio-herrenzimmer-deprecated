@@ -3,7 +3,48 @@
     position: fixed;
     bottom: 0;
     width: 100%;
+    margin: 0;
     font-size: 15px;
     z-index: 2000;
     background-color: #161616;
+    .audio-information,
+    .shuffle-mode {
+        background-color: #161616;
+        height: 60px;
+        padding: 8px 4px;
+    }
+    .artwork {
+        margin-left: -11px;
+        margin-right: 12px;
+        height: 60px;
+        width: 60px;
+        vertical-align: middle;
+    }
+    p {
+        position: relative;
+        top: 50%;
+        transform: translateY(-50%);
+        &.no-track-warning {
+            padding-left: 12px;
+        }
+    }
+    .title {
+        padding-left: 12px;
+    }
+    .host {
+        padding-left: 12px;
+        font-size: 12px;
+        text-transform: uppercase;
+        vertical-align: middle;
+        img {
+            margin-top: -2px;
+        }
+    }
+    audio {
+        width: 100%;
+        display: block;
+        border-radius: 0;
+        background-color: #161616;
+        padding-top: 6px;
+    }
 }
