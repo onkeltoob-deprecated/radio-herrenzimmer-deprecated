@@ -27,6 +27,8 @@ export class MixListComponent implements OnInit, OnDestroy {
 
   // Wird beim Zerstören der Komponente aufgerufen
   ngOnDestroy() {
-    this.mixServiceSubscription.unsubscribe();
+    if (this.mixServiceSubscription) {
+      this.mixServiceSubscription.unsubscribe();
+    }
   }
 }

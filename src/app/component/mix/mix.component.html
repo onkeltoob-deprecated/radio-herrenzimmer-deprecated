@@ -1,30 +1,32 @@
-<div class="mix" id="{{mix.urlTitle}}" itemprop="track" itemscope itemtype="http://schema.org/MusicRecording">
-    <h1 itemprop="name"><a routerLink="/music/{{mix.urlTitle}}">{{mix.title}}</a></h1>
-    <meta content="Onkel Toob" itemprop="byArtist">
-    <meta content="http://radio-herrenzimmer.de/music/{{mix.urlTitle}}" itemprop="url">
-    <meta content="{{dateTimeService.getIso8601Duration(mix.durationSeconds)}}" itemprop="duration">
-    <meta content="Radio Herrenzimmer" itemprop="inAlbum">
-    <p [innerHtml]="getIntroduction()"></p>
+<ng-container *ngIf="mix">
+    <div class="mix" id="{{mix.urlTitle}}" itemprop="track" itemscope itemtype="http://schema.org/MusicRecording">
+        <h1 itemprop="name"><a routerLink="/music/{{mix.urlTitle}}">{{mix.title}}</a></h1>
+        <meta content="Onkel Toob" itemprop="byArtist">
+        <meta content="http://radio-herrenzimmer.de/music/{{mix.urlTitle}}" itemprop="url">
+        <meta content="{{dateTimeService.getIso8601Duration(mix.durationSeconds)}}" itemprop="duration">
+        <meta content="Radio Herrenzimmer" itemprop="inAlbum">
+        <p [innerHtml]="getIntroduction()"></p>
 
-    <div class="info">
-        <div class="row">
-            <div class="col-md-9">
-                <input type="button" value="▶" class="btn start" />
-                <span class="duration">Length: {{dateTimeService.getDurationFromSeconds(mix.durationSeconds)}}</span>
-                <span class="playback-count" title="{{mix.playbacks}} playbacks">{{mix.playbacks}} <i class="fa fa-play-circle"></i></span>
-                <span class="favorite-count" title="{{mix.favorites}} likes">{{mix.favorites}} <i class="fa fa-heart"></i></span>
-                <span class="download-count" title="{{mix.downloads}} downloads">{{mix.downloads}} <i class="fa fa-cloud-download"></i></span>
-                <span class="repost-count" title="{{mix.reposts}} reposts">{{mix.reposts}} <i class="fa fa-retweet"></i></span>
-                <span class="comment-count" title="{{mix.comments}} comments">{{mix.comments}} <i class="fa fa-comment"></i></span>
+        <div class="info">
+            <div class="row">
+                <div class="col-md-9">
+                    <input type="button" value="▶" class="btn start" />
+                    <span class="duration">Length: {{dateTimeService.getDurationFromSeconds(mix.durationSeconds)}}</span>
+                    <span class="playback-count" title="{{mix.playbacks}} playbacks">{{mix.playbacks}} <i class="fa fa-play-circle"></i></span>
+                    <span class="favorite-count" title="{{mix.favorites}} likes">{{mix.favorites}} <i class="fa fa-heart"></i></span>
+                    <span class="download-count" title="{{mix.downloads}} downloads">{{mix.downloads}} <i class="fa fa-cloud-download"></i></span>
+                    <span class="repost-count" title="{{mix.reposts}} reposts">{{mix.reposts}} <i class="fa fa-retweet"></i></span>
+                    <span class="comment-count" title="{{mix.comments}} comments">{{mix.comments}} <i class="fa fa-comment"></i></span>
+                </div>
+                <div class="col-md-3 host">
+                    <p id="host">hosted on
+                        <a href="{{mix.trackUrl}}" target="_blank"><img src="/assets/img/soundcloud-white.png" alt="SOUNDCLOUD"></a>
+                    </p>
+                </div>
             </div>
-            <div class="col-md-3 host">
-                <p id="host">hosted on
-                    <a href="{{mix.trackUrl}}" target="_blank"><img src="/assets/img/soundcloud-white.png" alt="SOUNDCLOUD"></a>
-                </p>
-            </div>
+
         </div>
 
+        <app-tracklist [tracks]="mix.tracks"></app-tracklist>
     </div>
-
-    <app-tracklist [tracks]="mix.tracks"></app-tracklist>
-</div>
+</ng-container>

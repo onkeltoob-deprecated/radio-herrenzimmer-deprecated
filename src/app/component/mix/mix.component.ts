@@ -32,8 +32,7 @@ export class MixComponent implements OnInit, OnDestroy {
 
         // Mix über den entsprechenden Service ermitteln
         this.mixServiceSubscription = this.mixService.getMix(title).subscribe(data => {
-          console.info(data);
-          this.mix = data;
+          this.mix = data[0];
         });
       }
     });
@@ -41,8 +40,13 @@ export class MixComponent implements OnInit, OnDestroy {
 
   // Wird beim Zerstören der Komponente aufgerufen
   ngOnDestroy() {
-    this.routeSubscription.unsubscribe();
-    this.mixServiceSubscription.unsubscribe();
+    if (this.routeSubscription) {
+      this.routeSubscription.unsubscribe();
+    }
+
+    if (this.mixServiceSubscription) {
+      this.mixServiceSubscription.unsubscribe();
+    }
   }
 
   // Gibt den gesamten Einleitungstext zurück
