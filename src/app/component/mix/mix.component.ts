@@ -18,6 +18,9 @@ export class MixComponent implements OnInit, OnDestroy {
   // Subscription für die Route
   private routeSubscription: any;
 
+  // Subscription des Dienstes zum Auslesen von Mix-Daten
+  private mixServiceSubscription: any;
+
   // Erstellt ein neues Objekt vom Typ MixComponent
   constructor(private route: ActivatedRoute, private mixService: MixService, public dateTimeService: DateTimeService) { }
 
@@ -26,6 +29,12 @@ export class MixComponent implements OnInit, OnDestroy {
     this.routeSubscription = this.route.params.subscribe(params => {
       if (params['title']) {
         let title: string = params['title'];
+
+        // Mix über den entsprechenden Service ermitteln
+        this.mixServiceSubscription = this.mixService.getMix(title).subscribe(data => {
+          console.info(data);
+          this.mix = data;
+        });
       }
     });
   }
@@ -33,6 +42,7 @@ export class MixComponent implements OnInit, OnDestroy {
   // Wird beim Zerstören der Komponente aufgerufen
   ngOnDestroy() {
     this.routeSubscription.unsubscribe();
+    this.mixServiceSubscription.unsubscribe();
   }
 
   // Gibt den gesamten Einleitungstext zurück
