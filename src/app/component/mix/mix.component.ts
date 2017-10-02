@@ -24,8 +24,8 @@ export class MixComponent implements OnInit, OnDestroy {
 
   // Erstellt ein neues Objekt vom Typ MixComponent
   constructor(
-    private route: ActivatedRoute, 
-    private mixService: MixService, 
+    private route: ActivatedRoute,
+    private mixService: MixService,
     public dateTimeService: DateTimeService,
     private messageService: MessageService<Mix>) { }
 
@@ -66,7 +66,7 @@ export class MixComponent implements OnInit, OnDestroy {
 
   // Schickt den Mix zum Abspielen an den Message-Dienst,
   // auf den die Abspiel-Komponente lauscht
-  playMix(){
+  playMix() {
     this.messageService.sendMessage(this.mix);
   }
 }

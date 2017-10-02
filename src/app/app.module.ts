@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, APP_INITIALIZER } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
@@ -25,6 +25,10 @@ import { TracklistComponent } from './component/tracklist/tracklist.component';
 import { NotFoundComponent } from './component/not-found/not-found.component';
 import { HomeComponent } from './component/home/home.component';
 import { AudioPlayerComponent } from './component/audio-player/audio-player.component';
+
+export function configurationServiceFactory(configurationService: ConfigurationService): Function {  
+  return () => configurationService.load();
+}
 
 @NgModule({
   declarations: [
@@ -54,7 +58,13 @@ import { AudioPlayerComponent } from './component/audio-player/audio-player.comp
     PlatformService,
     TitleService,
     MixService,
-    DateTimeService
+    DateTimeService,
+    {
+      provide: APP_INITIALIZER,
+      useFactory: configurationServiceFactory,
+      deps: [ConfigurationService],
+      multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })

@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Http, RequestOptions, Headers } from '@angular/http';
 import 'rxjs/add/operator/map';
@@ -12,17 +11,24 @@ import { Track } from '../model/track.model';
 
 // Service zum Auslesen von Mix-Daten
 @Injectable()
-export class MixService implements OnInit {
+export class MixService {
 
   // Konfigurationsobjekt
   private configuration: Configuration;
 
   // Erstellt ein neues Objekt vom Typ MixService
-  constructor(private configurationService: ConfigurationService, private http: HttpClient) {}
+  constructor(private configurationService: ConfigurationService, private http: HttpClient) {
+    this.init();
+  }
+
+  // Wird beim Initialisieren des Services ausgeführt
+  private init(): void {
+    this.configuration = this.configurationService.getConfiguration();
+  }
 
   // Ermittelt die Mixes über die API
   getMixes(): Observable<Mix[]> {
-    return this.http.get('http://api.radio-herrenzimmer.de/mixes')
+    return this.http.get(this.configuration.MixListEndpoint)
       .map((res: Response) => {
         return res['Mixes'].map(function (resultMix) {
           let mix: Mix = new Mix();
@@ -55,7 +61,7 @@ export class MixService implements OnInit {
 
   // Ermittelt einen Mix anhand des URL-Titels über die API
   getMix(urlTitle: string): Observable<Mix> {
-    return this.http.get('http://api.radio-herrenzimmer.de/mixes/' + urlTitle)
+    return this.http.get(this.configuration.MixEndpoint.replace('{urlTitle}', urlTitle))
       .map((res: Response) => {
         return res['Mixes'].map(function (resultMix) {
           let mix: Mix = new Mix();
@@ -83,10 +89,5 @@ export class MixService implements OnInit {
           return mix;
         });
       });
-  }
-
-  // Wird beim Initialisieren des Services ausgeführt
-  ngOnInit(): void { 
-    this.configuration = this.configurationService.getConfiguration();
   }
 }
