@@ -13,6 +13,9 @@ export class AudioPlayerComponent implements OnInit, OnDestroy {
   // Der abzuspielende Mix
   mix: Mix;
 
+  // Liste der abzuspielenden Mixes
+  played: Map<number, number>;
+
   // Das Abonnement auf dem Message-Dienst zum Empfangen neuer Mixe zum Abspielen
   subscription: Subscription;
 
@@ -24,20 +27,28 @@ export class AudioPlayerComponent implements OnInit, OnDestroy {
   }
 
   // Spielt den aktuellen Mix ab
-  playMix(): void {
+  start(): void {
     this.audio.nativeElement.src = this.mix.streamUrl;
     this.audio.nativeElement.play();
   }
 
+  // Wird beim Pausieren des Mixes ausgeführt
+  pause(): void {
+    console.info('audio-player->pause');
+  }
+
+  // Wird beim Abspielen des Mixes ausgeführt
+  play(): void {
+    console.info('audio-player->play');
+  }
+
   // Wird beim Initialisieren der Komponente aufgerufen
   ngOnInit() {
-    console.info('ngOnInit');
     this.subscription = this.messageService
       .getMessage()
       .subscribe(message => {
-        console.info('message received');
         this.mix = message.data;
-        this.playMix();
+        this.start();
       });
   }
 
