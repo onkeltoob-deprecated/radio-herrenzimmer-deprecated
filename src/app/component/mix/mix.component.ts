@@ -27,11 +27,13 @@ export class MixComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private mixService: MixService,
     public dateTimeService: DateTimeService,
-    private messageService: MessageService<Mix>) { }
+    private messageService: MessageService<Mix>) {       
+    }
 
   // Wird beim Initialisieren der Komponente ausgeführt
   ngOnInit() {
-    this.routeSubscription = this.route.params.subscribe(params => {
+    this.routeSubscription = this.route.params.subscribe(params => {    
+    
       if (params['title']) {
         let title: string = params['title'];
 

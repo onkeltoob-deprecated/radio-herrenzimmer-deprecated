@@ -28,8 +28,9 @@ export class MixService {
 
   // Ermittelt die Mixes über die API
   getMixes(): Observable<Mix[]> {
-    return this.http.get(this.configuration.MixListEndpoint)
+    return this.http.get(this.configuration.mixListEndpoint)
       .map((res: Response) => {
+        let config: Configuration = this.configuration;
         return res['Mixes'].map(function (resultMix) {
           let mix: Mix = new Mix();
           mix.id = resultMix.MixId;
@@ -39,6 +40,8 @@ export class MixService {
           mix.descriptionHtml = resultMix.DescriptionHtml;
           mix.trackId = resultMix.TrackId;
           mix.trackUrl = resultMix.TrackUrl;
+          mix.artworkUrl = resultMix.Artwork;
+          mix.streamUrl = resultMix.StreamUrl + '?client_id=' + config.soundcloudApiClientId;
           mix.urlTitle = resultMix.UrlTitle;
           mix.uploaded = new Date(resultMix.Uploaded * 1000);
           mix.playbacks = resultMix.PlaybackCount;
@@ -58,11 +61,11 @@ export class MixService {
       });
   }
 
-
   // Ermittelt einen Mix anhand des URL-Titels über die API
   getMix(urlTitle: string): Observable<Mix> {
-    return this.http.get(this.configuration.MixEndpoint.replace('{urlTitle}', urlTitle))
+    return this.http.get(this.configuration.mixEndpoint.replace('{urlTitle}', urlTitle))
       .map((res: Response) => {
+        let config: Configuration = this.configuration;
         return res['Mixes'].map(function (resultMix) {
           let mix: Mix = new Mix();
           mix.id = resultMix.MixId;
@@ -73,6 +76,8 @@ export class MixService {
           mix.trackId = resultMix.TrackId;
           mix.trackUrl = resultMix.TrackUrl;
           mix.urlTitle = resultMix.UrlTitle;
+          mix.artworkUrl = resultMix.Artwork;
+          mix.streamUrl = resultMix.StreamUrl + '?client_id=' + config.soundcloudApiClientId;
           mix.uploaded = new Date(resultMix.Uploaded * 1000);
           mix.playbacks = resultMix.PlaybackCount;
           mix.downloads = resultMix.DownloadCount;

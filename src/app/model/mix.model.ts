@@ -47,4 +47,10 @@ export class Mix {
 
     // Anzahl der Abspielvorgänge
     playbacks: number;
+
+    // Pfad zum Cover
+    artworkUrl: string;
+
+    // Pfad für das Abspielen des Mixes
+    streamUrl: string;
 }

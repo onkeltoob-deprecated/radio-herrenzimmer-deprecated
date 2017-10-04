@@ -26,10 +26,12 @@ export class ConfigurationService {
     return this.http
       .get('/assets/app.config.json')
       .toPromise()
-      .then((data: any) => this.configuration = data)
+      .then((data: any) => {
+        return this.configuration = data
+      })
       .catch((err: any) => {
+        console.warn(err);
         Promise.resolve();
-        console.error(err);
       });
   }
 

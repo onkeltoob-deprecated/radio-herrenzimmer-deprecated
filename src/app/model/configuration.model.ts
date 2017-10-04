@@ -3,8 +3,11 @@
 export class Configuration {
 
     // Key der App zur Anmeldung an der Soundcloud-API
-    MixListEndpoint: string;
+    mixListEndpoint: string;
 
     // Endpunkt der RH-API für die Liste aller Mixe
-    MixEndpoint: string;
+    mixEndpoint: string;
+
+    // App-ID für die API-Kommunikation mit Soundcloud
+    soundcloudApiClientId: string;
 }

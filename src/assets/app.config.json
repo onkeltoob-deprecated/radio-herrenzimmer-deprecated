@@ -1,4 +1,5 @@
 {
-    "MixListEndpoint": "http://api.radio-herrenzimmer.de/mixes",
-    "MixEndpoint": "http://api.radio-herrenzimmer.de/mixes/{urlTitle}"
+    "mixListEndpoint": "http://api.radio-herrenzimmer.de/mixes",
+    "mixEndpoint": "http://api.radio-herrenzimmer.de/mixes/{urlTitle}",
+    "soundcloudApiClientId": "d0f53fa5834415588e0fd9c2c4731792"
 }

@@ -15,12 +15,11 @@ export class MixListComponent implements OnInit, OnDestroy {
   private mixServiceSubscription: any;
 
   // Erstellt ein neues Objekt vom Typ MixListComponent
-  constructor(private mixService: MixService) { }
+  constructor(private mixService: MixService) {
+  }
 
   // Wird beim Initialisieren der Komponente ausgeführt
   ngOnInit() {
-
-
     // Mixes über den entsprechenden Service ermitteln
     this.mixServiceSubscription = this.mixService.getMixes().subscribe(data => {
       this.mixes = data.reverse();
