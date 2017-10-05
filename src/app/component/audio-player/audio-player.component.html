@@ -20,7 +20,7 @@
                 <input type="checkbox" class="switch" id="shuffle" name="shuffle" checked>
             </p> -->
         </div>
-        <audio #audio id="audio" controls preload="none" name="media" (pause)="pause()" (play)="play()">
+        <audio #audio id="audio" controls preload="none" name="media" (pause)="onPause()" (play)="onPlay()" (ended)="onEnd()">
             <source type="audio/mpeg">
         </audio>
     </div>

@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild, Input } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 import { MessageService } from '../../service/message.service';
 import { Configuration } from '../../model/configuration.model';
@@ -13,8 +13,11 @@ export class AudioPlayerComponent implements OnInit, OnDestroy {
   // Der abzuspielende Mix
   mix: Mix;
 
-  // Liste der abzuspielenden Mixes
-  played: Map<number, number>;
+  // Gibt an, ob alle Mixe hintereinander gespielt werden sollen
+  @Input() playContinuously: boolean;
+
+  // Gibt an, ob die Mixe in zufälliger Reihenfolge gespielt werden sollen
+  @Input() playRandomly: boolean;
 
   // Das Abonnement auf dem Message-Dienst zum Empfangen neuer Mixe zum Abspielen
   subscription: Subscription;
@@ -24,22 +27,40 @@ export class AudioPlayerComponent implements OnInit, OnDestroy {
 
   // Erstellt ein neues Objekt vom Typ AudioPlayerComponent
   constructor(private messageService: MessageService<Mix>) {
+    this.playContinuously = true;
+    this.playRandomly = false;
   }
 
   // Spielt den aktuellen Mix ab
-  start(): void {
-    this.audio.nativeElement.src = this.mix.streamUrl;
+  start(fromBeginning: boolean): void {
+    if (fromBeginning) {
+      this.audio.nativeElement.src = this.mix.streamUrl;
+    }
+
     this.audio.nativeElement.play();
   }
 
   // Wird beim Pausieren des Mixes ausgeführt
-  pause(): void {
+  onPause(): void {
     console.info('audio-player->pause');
   }
 
   // Wird beim Abspielen des Mixes ausgeführt
-  play(): void {
+  onPlay(): void {
     console.info('audio-player->play');
+  }
+
+  // Wird beim Beenden des Mixes ausgeführt
+  onEnd(): void {
+    console.info('audio-player->end');
+    if (this.playContinuously) {
+      this.playNext();
+    }
+  }
+
+  // Sorgt für das Abspielen des nächsten Mixes
+  private playNext() {
+    console.info('audio-player->playNext');
   }
 
   // Wird beim Initialisieren der Komponente aufgerufen
@@ -47,8 +68,12 @@ export class AudioPlayerComponent implements OnInit, OnDestroy {
     this.subscription = this.messageService
       .getMessage()
       .subscribe(message => {
-        this.mix = message.data;
-        this.start();
+        if (!this.mix || this.mix.id != message.data.id) {
+          this.mix = message.data;
+          this.start(true);
+        } else if (this.audio.nativeElement.paused) {
+          this.start(false);
+        }
       });
   }
 
