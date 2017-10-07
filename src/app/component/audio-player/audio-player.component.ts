@@ -13,6 +13,12 @@ export class AudioPlayerComponent implements OnInit, OnDestroy {
   // Der abzuspielende Mix
   mix: Mix;
 
+  // Liste der abzuspielenden Mixe
+  private mixes: Mix[];
+
+  // Liste der bereits abgespielten Mixe
+  private playedMixes: Mix[];
+
   // Gibt an, ob alle Mixe hintereinander gespielt werden sollen
   @Input() playContinuously: boolean;
 
@@ -29,6 +35,37 @@ export class AudioPlayerComponent implements OnInit, OnDestroy {
   constructor(private messageService: MessageService<Mix>) {
     this.playContinuously = true;
     this.playRandomly = false;
+    this.mixes = new Array<Mix>();
+    this.playedMixes = new Array<Mix>();
+  }
+
+  // Wird beim Abspielen des Mixes ausgeführt
+  onPlay(): void {
+    console.info('audio-player->play');
+  }
+
+  // Wird beim Pausieren des Mixes ausgeführt
+  onPause(): void {
+    console.info('audio-player->pause');
+  }
+
+  // Wird beim Beenden des Mixes ausgeführt
+  onEnd(): void {
+    console.info('audio-player->end');
+    // Beendeten Mix zur Liste der abgespielten Mixe hinzufügen
+    this.playedMixes.push(this.mix);
+
+    // Beendeten Mix aus der Liste der abzuspielenden Mixe entfernen
+    let index = this.mixes.indexOf(this.mix);
+    if (index > -1) {
+      this.mixes.splice(index, 1);
+    }
+
+    if (this.playContinuously) {
+      this.playNext();
+    }
+
+    console.info(this.playedMixes);
   }
 
   // Spielt den aktuellen Mix ab
@@ -40,27 +77,14 @@ export class AudioPlayerComponent implements OnInit, OnDestroy {
     this.audio.nativeElement.play();
   }
 
-  // Wird beim Pausieren des Mixes ausgeführt
-  onPause(): void {
-    console.info('audio-player->pause');
-  }
-
-  // Wird beim Abspielen des Mixes ausgeführt
-  onPlay(): void {
-    console.info('audio-player->play');
-  }
-
-  // Wird beim Beenden des Mixes ausgeführt
-  onEnd(): void {
-    console.info('audio-player->end');
-    if (this.playContinuously) {
-      this.playNext();
-    }
-  }
-
   // Sorgt für das Abspielen des nächsten Mixes
   private playNext() {
     console.info('audio-player->playNext');
+    if (this.playRandomly) {
+      console.info('audio-player->playNext->randomly');
+    } else {
+      console.info('audio-player->playNext->next');
+    }
   }
 
   // Wird beim Initialisieren der Komponente aufgerufen
